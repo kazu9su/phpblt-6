@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+        <section data-markdown="" data-separator="^\n---$" data-separator-vertical="^\n>>>$">
+        <script type="text/template">
+## 開発効率を上げるテスト設計  	  
+
+---
+
+## 自己紹介
+
+* トミー
+* Github : @kazu9su
+* Twitter : @tooooooooomy
+* PHPが得意なフレンズです！
+* 勉強中の言語: rust,ocaml,lisp
+
+---
+
+## 開発効率が上がる状況とは？
+
+---
+
+## A: いろいろありそう
+
+---
+
+### 最も開発効率が落ちるのはどんなときか？
+
+---
+
+#### A: 自分以外のメンバーに手戻りが発生するとき
+
+---
+
+#### 他メンバーにできるだけ手戻りを発生させない
+#### = 開発効率があがる!
+
+---
+
+### そんなテストを設計したい
+
+---
+
+## 現在のプロジェクトのメンバー構成
+
+* サーバーサイド: 1人(自分)
+* フロントエンド: 2人
+
+---
+
+### 前提: サーバーサイドの処理イメージ
+
+* inputを受け取ったらバリデーションをする
+* バリデーションエラーで400, システムエラーで500を返す
+* ビジネスロジックを適用し、成功したら200を返す
+
+---
+
+### フロントとのやりとりという観点だと、
+### INのチェックがとても重要
+
+---
+
+## 具体的なテスト設計
+
+---
+
+### レベル: バリデーション定義
+
+* 結構スルーしがち
+* 一番テストを書いといたほうがいいところ
+  * 成功パターンは一つだが、異常系のパターンは複数ある
+  * 各パラメータ毎にテストを書いておくと、いいことがあるかも
+
+---
+
+### レベル: バリデーター
+
+* バリデーションが成功したとき、失敗したときのそれぞれの挙動のテスト
+
+---
+
+### レベル: コントローラー
+
+* 処理成功のテスト
+* バリデーションエラーのテスト
+* 500エラーを返すパターンのテスト
+
+---
+
+### ビジネスロジックはあたりまえにテストされると思うので割愛…！
+
+---
+
+### これだけ事前にテストできていれば…
+
+* フロントエンドとの連携も(きっと)スムーズ！！
+
+---
+
+## 終わりに
+
+* 開発効率悪いなーと感じたら、意識してみてください！
+* exampleも用意しました！
+
+---
+
+## すっごーい！
+![すっごーい！](./img/serval.jpg)
+
+---
+
+## ご清聴ありがとうございました
+
+        </script>
+        </section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
