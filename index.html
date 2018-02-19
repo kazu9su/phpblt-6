@@ -26,115 +26,169 @@
 			<div class="slides">
         <section data-markdown="" data-separator="^\n---$" data-separator-vertical="^\n>>>$">
         <script type="text/template">
-## 開発効率を上げるテスト設計  	  
+## How to contribute to OSS with test  	  
 
 ---
 
-## 自己紹介
+## Kazushige Tominaga
 
-* トミー
-* Github : @kazu9su
-* Twitter : @tooooooooomy
-* PHPが得意なフレンズです！
-* 勉強中の言語: rust,ocaml,lisp
+![picture](./img/tommy.jpg)
+* Github : [@kazu9su](https://github.com/kazu9su)
+* Twitter : [@tooooooooomy](https://twitter.com/tooooooooomy)
 
 ---
 
-## 開発効率が上がる状況とは？
+## Today I don't talk about...
+* Principle of TDD
+* How important test is!
+* Something like that
 
 ---
 
-## A: いろいろありそう
+## I write test just because I like test:)
 
 ---
 
-### 最も開発効率が落ちるのはどんなときか？
+## OK
 
 ---
 
-#### A: 自分以外のメンバーに手戻りが発生するとき
+## An example Open Source Software is...
 
 ---
 
-#### 他メンバーにできるだけ手戻りを発生させない
-#### = 開発効率があがる!
+## mastodon
+![mastodon](./img/mastodon.jpeg)
 
 ---
 
-### そんなテストを設計したい
+Someday, I found a spec file...
 
 ---
 
-## 現在のプロジェクトのメンバー構成
-
-* サーバーサイド: 1人(自分)
-* フロントエンド: 2人
+![fetch_atom_spec](./img/fetch_atom_spec.png)
 
 ---
 
-### 前提: サーバーサイドの処理イメージ
-
-* inputを受け取ったらバリデーションをする
-* バリデーションエラーで400, システムエラーで500を返す
-* ビジネスロジックを適用し、成功したら200を返す
+## Great
 
 ---
 
-### フロントとのやりとりという観点だと、
-### INのチェックがとても重要
+## But wait,
 
 ---
 
-## 具体的なテスト設計
+## There are a lot of rule in test world
+* TDD
+  - should test all of methods
+* BDD
+  - should test behavior
+* Test only provided public methods
+  - included in BDD?
 
 ---
 
-### レベル: バリデーション定義
-
-* 結構スルーしがち
-* 一番テストを書いといたほうがいいところ
-  * 成功パターンは一つだが、異常系のパターンは複数ある
-  * 各パラメータ毎にテストを書いておくと、いいことがあるかも
+# 🤔
 
 ---
 
-### レベル: バリデーター
-
-* バリデーションが成功したとき、失敗したときのそれぞれの挙動のテスト
+## Let's send a Pull Request!
 
 ---
 
-### レベル: コントローラー
-
-* 処理成功のテスト
-* バリデーションエラーのテスト
-* 500エラーを返すパターンのテスト
+![first-pr](./img/first-pr.png)
 
 ---
 
-### ビジネスロジックはあたりまえにテストされると思うので割愛…！
+## What is the point?
+* Write test just about 1 method
+  - Committers can see PR easily
+* Write private method's test
+  - I can know their testing style explicitly
 
 ---
 
-### これだけ事前にテストできていれば…
-
-* フロントエンドとの連携も(きっと)スムーズ！！
+## Let see their reactions...👀
 
 ---
 
-## 終わりに
-
-* 開発効率悪いなーと感じたら、意識してみてください！
-* exampleも用意しました！
+![first-pr-result](./img/first-pr-result.png)
 
 ---
 
-## すっごーい！
-![すっごーい！](./img/serval.jpg)
+# Looks my PR perfect😇
 
 ---
 
-## ご清聴ありがとうございました
+## OK, so let's go ahead!
+
+---
+
+![pr-second](./img/pr-second.png)
+
+---
+
+![pr-second-result](./img/pr-second-result.png)
+
+---
+
+```
+There is no immediate harm in these tests but you should know that
+  unit tests should not try to look into private methods or internal variables.
+The unit test must confirm the public API of the class works,
+  i.e. how other code will use it.
+The internal implementation of the class is subject to change (refactoring).
+The perfect refactoring is
+  when you change the code but don't have to touch the tests.
+With tests like these, they would also have to be modified
+  if the internal implementation changes in the future.
+```
+
+---
+
+## Finally, I can get usable information from the author.
+* PR has already marged, but don't be mind :)
+
+---
+
+## I completely understood about it
+
+---
+
+![pr-third](./img/pr-third.png)
+
+---
+
+![pr-third-result](./img/pr-third-result.png)
+
+---
+
+## Looks Good To Me:)
+
+---
+
+## Sample PR list
+* https://github.com/tootsuite/mastodon/pull/6439
+* https://github.com/tootsuite/mastodon/pull/6446
+* https://github.com/tootsuite/mastodon/pull/6455
+* https://github.com/tootsuite/mastodon/pull/6456
+* https://github.com/tootsuite/mastodon/pull/6500
+
+---
+
+## Conclusion
+* Well-known OSS needs tests
+* Communicate with committers is the most important
+* Make simple, understandable PR
+* Enjoy testing
+
+---
+
+### Please introduce me the OSS needs test:)
+
+---
+
+# Thank you!
 
         </script>
         </section>
@@ -158,5 +212,15 @@
 				]
 			});
 		</script>
+    <style type="text/css">
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4,
+      .reveal h5,
+      .reveal h6 {
+        text-transform: none;
+      }
+    </style>
 	</body>
 </html>
